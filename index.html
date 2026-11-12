@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For Lakki ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:'Poppins',sans-serif;
+    background:radial-gradient(circle at 20% 10%,#ff9ab8 0%,transparent 45%),
+               radial-gradient(circle at 85% 90%,#c2185b 0%,transparent 50%),
+               linear-gradient(160deg,#3b0a24,#7a1243 55%,#b3235f);
+    color:#fff;overflow-x:hidden;min-height:100vh;
+    display:flex;align-items:center;justify-content:center;padding:20px;
+  }
+  #fall{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+  .drop{position:absolute;top:-40px;animation:fall linear infinite;opacity:.9;user-select:none}
+  @keyframes fall{
+    0%{transform:translateY(-10vh) rotate(0deg)}
+    100%{transform:translateY(115vh) rotate(360deg)}
+  }
+  .corner{position:fixed;font-size:64px;z-index:2;filter:drop-shadow(0 4px 8px rgba(0,0,0,.4));animation:sway 4s ease-in-out infinite}
+  .c1{top:8px;left:10px}.c2{top:8px;right:10px;animation-delay:1s}
+  .c3{bottom:8px;left:10px;animation-delay:2s}.c4{bottom:8px;right:10px;animation-delay:.5s}
+  @keyframes sway{0%,100%{transform:rotate(-8deg) scale(1)}50%{transform:rotate(8deg) scale(1.1)}}
+
+  .card{
+    position:relative;z-index:5;width:100%;max-width:480px;text-align:center;
+    background:rgba(255,255,255,.12);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.3);border-radius:28px;padding:34px 22px 30px;
+    box-shadow:0 20px 60px rgba(0,0,0,.45);
+  }
+  .heartbeat{font-size:70px;animation:beat 1.2s infinite}
+  @keyframes beat{0%,100%{transform:scale(1)}25%{transform:scale(1.25)}50%{transform:scale(1)}75%{transform:scale(1.15)}}
+  h1{font-family:'Great Vibes',cursive;font-size:3.2rem;font-weight:400;margin:6px 0;color:#ffd6e4;text-shadow:0 3px 12px rgba(0,0,0,.4)}
+  .sub{font-weight:300;letter-spacing:.5px;margin-bottom:8px;opacity:.95}
+  .question{font-family:'Great Vibes',cursive;font-size:2.4rem;margin:18px 0 22px;line-height:1.2}
+  .buttons{display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap;min-height:70px}
+  button{
+    font-family:'Poppins',sans-serif;font-weight:600;font-size:1.1rem;border:none;cursor:pointer;
+    border-radius:50px;padding:14px 38px;transition:transform .2s ease,box-shadow .2s ease;
+  }
+  #yes{background:linear-gradient(135deg,#ff4d8d,#ff1f6b);color:#fff;box-shadow:0 8px 24px rgba(255,31,107,.55);animation:pulse 1.6s infinite}
+  #yes:hover{transform:scale(1.08)}
+  @keyframes pulse{0%,100%{box-shadow:0 8px 24px rgba(255,31,107,.55)}50%{box-shadow:0 8px 40px rgba(255,31,107,.95)}}
+  #no{background:rgba(255,255,255,.9);color:#7a1243}
+  #no:hover{transform:scale(.95)}
+  #msg{min-height:56px;margin-top:20px;font-size:1.05rem;color:#ffe3ee;font-weight:400;transition:opacity .3s}
+  .pop{animation:pop .4s ease}
+  @keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+
+  /* YES screen */
+  #yesScreen{display:none}
+  #yesScreen h2{font-family:'Great Vibes',cursive;font-size:3rem;font-weight:400;color:#ffd6e4;margin-bottom:8px}
+  .gifbox{margin:16px auto;width:100%;max-width:340px;border-radius:22px;overflow:hidden;border:3px solid rgba(255,255,255,.5);box-shadow:0 12px 36px rgba(0,0,0,.45);background:#5a0f33}
+  .gifbox img{width:100%;display:block}
+  .fallback{padding:26px 10px}
+  .ring{font-size:90px;animation:beat 1.3s infinite}
+  .couple{font-size:48px;margin-top:6px;animation:sway 3s infinite}
+  .love-text{font-size:1.05rem;line-height:1.7;margin-top:14px;font-weight:300}
+  .love-text b{font-weight:600;color:#ffd6e4}
+  .music-row{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .music-row button{font-size:.9rem;padding:10px 22px;background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.4)}
+  .hint{font-size:.78rem;opacity:.75;margin-top:10px}
+  .hidden{display:none}
+</style>
+</head>
+<body>
+
+<div id="fall"></div>
+<div class="corner c1">🌹</div><div class="corner c2">🌹</div>
+<div class="corner c3">🌹</div><div class="corner c4">🌹</div>
+
+<!-- Put your song file next to this page and name it song.mp3 -->
+<audio id="song" src="reel.mp3" loop preload="auto"></audio>
+<input type="file" id="songPicker" accept="audio/*" class="hidden">
+
+<div class="card">
+
+  <!-- QUESTION SCREEN -->
+  <div id="askScreen">
+    <!-- Put the cat rose GIF next to this page and name it cat.gif -->
+    <div class="heartbeat" style="font-size:0;animation:none">
+      <img src="image.gif" alt="Cat with rose" style="width:150px;height:150px;object-fit:cover;border-radius:50%;border:3px solid rgba(255,255,255,.6);box-shadow:0 8px 24px rgba(0,0,0,.4)"
+           onerror="this.outerHTML='<span style=&quot;font-size:70px;display:inline-block;animation:beat 1.2s infinite&quot;>💖</span>'">
+    </div>
+    <h1>Lakki</h1>
+    <p class="sub">There is something my heart wants to tell you…</p>
+    <div class="question">Will you be mine forever? 🌹</div>
+    <div class="buttons" id="btnWrap">
+      <button id="yes">Yes 💍</button>
+      <button id="no">No 💔</button>
+    </div>
+    <div id="msg"></div>
+  </div>
+
+  <!-- YES SCREEN -->
+  <div id="yesScreen">
+    <h2>She said YES! 💞</h2>
+    <div class="gifbox" id="gifbox">
+      <!-- Put your own image next to this page and name it photo.jpg -->
+      <img src="photo.jpg" alt="Our photo" id="gifImg" onerror="showFallback()">
+    </div>
+    <p class="love-text">
+      <b>Lakki</b>, you just made me the happiest person in the world. 🥹<br>
+      You are my today, my tomorrow and my forever.<br>
+      <b>I love you, always &amp; forever.</b> ❤️
+    </p>
+    <div class="music-row">
+      <button id="toggleMusic">⏸ Pause Music</button>
+      <button id="pickSong">🎵 Choose Song</button>
+    </div>
+    <p class="hint" id="hint"></p>
+  </div>
+
+</div>
+
+<script>
+  /* ---------- falling roses & hearts ---------- */
+  const fall = document.getElementById('fall');
+  const items = ['🌹','❤️','💖','🌸','💕','🌹','💗'];
+  function spawn(){
+    const d = document.createElement('div');
+    d.className = 'drop';
+    d.textContent = items[Math.floor(Math.random()*items.length)];
+    d.style.left = Math.random()*100 + 'vw';
+    d.style.fontSize = (16 + Math.random()*26) + 'px';
+    const dur = 6 + Math.random()*7;
+    d.style.animationDuration = dur + 's';
+    fall.appendChild(d);
+    setTimeout(()=>d.remove(), dur*1000);
+  }
+  setInterval(spawn, 450);
+  for(let i=0;i<12;i++) setTimeout(spawn, i*150);
+
+  /* ---------- NO button: shows a message ---------- */
+  const noMessages = [
+    "Please Lakki, think again 🥺",
+    "My heart just broke a little 💔",
+    "Are you sure? Look at the Yes button 😘",
+    "I'll wait for you forever… tap Yes 🌹",
+    "Pretty please? I'll give you all my chocolates 🍫",
+    "No isn't an option, my love 😌❤️"
+  ];
+  let noCount = 0, yesScale = 1;
+  const msg = document.getElementById('msg');
+  const yes = document.getElementById('yes');
+  const no  = document.getElementById('no');
+
+  no.addEventListener('click', () => {
+    msg.classList.remove('pop'); void msg.offsetWidth;
+    msg.textContent = noMessages[noCount % noMessages.length];
+    msg.classList.add('pop');
+    noCount++;
+    yesScale = Math.min(yesScale + 0.12, 1.8);
+    yes.style.transform = 'scale(' + yesScale + ')';
+    no.style.transform = 'scale(' + Math.max(1 - noCount*0.08, 0.6) + ')';
+  });
+
+  /* ---------- YES button: music + proposal screen ---------- */
+  const song = document.getElementById('song');
+  const hint = document.getElementById('hint');
+  const picker = document.getElementById('songPicker');
+  let musicOn = false;
+
+  function playSong(){
+    song.play().then(()=>{
+      musicOn = true;
+      document.getElementById('toggleMusic').textContent = '⏸ Pause Music';
+    }).catch(()=>{
+      hint.textContent = 'Tap "Choose Song" to add your song 🎶';
+    });
+  }
+
+  yes.addEventListener('click', () => {
+    document.getElementById('askScreen').style.display = 'none';
+    const ys = document.getElementById('yesScreen');
+    ys.style.display = 'block'; ys.classList.add('pop');
+    playSong();                // plays right after the tap, so browsers allow it
+    burst();
+  });
+
+  song.addEventListener('error', () => {
+    hint.textContent = 'Song file not found. Tap "Choose Song" and pick your song 🎶';
+  });
+
+  document.getElementById('toggleMusic').addEventListener('click', (e) => {
+    if(song.paused){ song.play(); e.target.textContent = '⏸ Pause Music'; }
+    else { song.pause(); e.target.textContent = '▶️ Play Music'; }
+  });
+  document.getElementById('pickSong').addEventListener('click', () => picker.click());
+  picker.addEventListener('change', () => {
+    if(picker.files[0]){
+      song.src = URL.createObjectURL(picker.files[0]);
+      hint.textContent = '';
+      playSong();
+    }
+  });
+
+  /* ---------- fallback if proposal.gif is missing ---------- */
+  function showFallback(){
+    document.getElementById('gifbox').innerHTML =
+      '<div class="fallback"><div class="ring">💖</div>' +
+      '<div style="font-family:\'Great Vibes\',cursive;font-size:2rem;margin-top:8px">Forever Yours</div></div>';
+  }
+
+  /* ---------- celebration burst ---------- */
+  function burst(){
+    for(let i=0;i<60;i++){
+      setTimeout(() => {
+        const d = document.createElement('div');
+        d.className = 'drop';
+        d.textContent = ['❤️','💖','🌹','💕','✨'][Math.floor(Math.random()*5)];
+        d.style.left = Math.random()*100 + 'vw';
+        d.style.fontSize = (20 + Math.random()*30) + 'px';
+        d.style.animationDuration = (3 + Math.random()*3) + 's';
+        fall.appendChild(d);
+        setTimeout(()=>d.remove(), 6500);
+      }, i*60);
+    }
+  }
+</script>
+</body>
+</html>
